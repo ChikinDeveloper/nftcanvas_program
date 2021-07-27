@@ -1,0 +1,29 @@
+[package]
+name = "chikin-nft-canvas"
+version = "0.0.1"
+description = "Chikin NFT Canvas (Solana on-chain program)"
+authors = ["Many chikins <chikindeveloper@protonmail.com>"]
+license = "Apache-2.0"
+homepage = "https://chikin.run/"
+edition = "2018"
+
+[features]
+test-bpf = []
+no-entrypoint = []
+
+[dependencies]
+borsh = "0.9.0"
+solana-program = "1.7.4"
+spl-token = { version = "3.1", features = [ "no-entrypoint" ] }
+spl-associated-token-account = { version = "1.0", features = [ "no-entrypoint" ] }
+num-traits = "0.2"
+num-derive = "0.3"
+thiserror = "1.0"
+
+[dev-dependencies]
+solana-program-test = "=1.7.4"
+solana-sdk = "=1.7.4"
+
+[lib]
+name = "chikin_nft_canvas"
+crate-type = ["cdylib", "lib"]
