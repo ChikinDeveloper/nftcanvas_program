@@ -16,6 +16,5 @@ async fn test_packed_size() {
     println!("Pixel.rent={}", Sol(rent));
     let pixel_count = 1000 * 1000;
     println!("Pixel.rent.total={}", Sol(rent * pixel_count));
-
     println!("MINT_COST={}", Sol(config::MINT_COST));
 }

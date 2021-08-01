@@ -8,7 +8,7 @@ pub const TAX_DIV: u64 = 100; // 1%
 pub mod token_mint {
     use solana_program::declare_id;
 
-    declare_id!("7XUka7j8G1HbdQPu2WTfFitQ2dr4w6CqS7yPyV15UZqH");
+    declare_id!("8s9FCz99Wcr3dHpiauFRi6bLXzshXfcGTfgQE7UEopVx");
 }
 
 pub mod mint_pool_wallet {
@@ -20,7 +20,7 @@ pub mod mint_pool_wallet {
 pub mod team_token_account {
     use solana_program::declare_id;
 
-    declare_id!("7WmS8RztXa6S6qNgUp3T3A2SMzF76i5k2PwsGRqy63gR");
+    declare_id!("Esi6Z7reZt9NjZ2TeTFRXcTez1XA7764dE9bZoKCdjTb");
 }
 
 #[inline(always)]

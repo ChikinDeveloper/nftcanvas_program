@@ -46,6 +46,8 @@ pub fn process_mint_pixel(
     color: [u8; 3],
     sell_price: u64,
 ) -> ProgramResult {
+    check_pixel_index(index)?;
+
     let accounts_iter = &mut accounts.iter();
 
     let program = next_account_info(accounts_iter)?;
@@ -84,8 +86,6 @@ pub fn process_mint_pixel(
     if pixel_account.key != &pixel_account_id {
         return Err(NftCanvasError::PixelAccountKeyMismatch.into());
     }
-
-    check_pixel_index(index)?;
 
     // Transfer sol to mint pool
     invoke(
@@ -129,6 +129,8 @@ pub fn process_update_pixel_color(
     index: u32,
     color: [u8; 3],
 ) -> ProgramResult {
+    check_pixel_index(index)?;
+
     let accounts_iter = &mut accounts.iter();
 
     let program = next_account_info(accounts_iter)?;
@@ -159,8 +161,6 @@ pub fn process_update_pixel_color(
         return Err(NftCanvasError::PixelOwnerDidNotSign.into());
     }
 
-    check_pixel_index(index)?;
-
     pixel_account_state.color = color;
     pixel_account_state.pack_into(&mut &mut pixel_account.data.borrow_mut()[..])?;
 
@@ -173,6 +173,8 @@ pub fn process_sell_pixel(
     index: u32,
     price: u64,
 ) -> ProgramResult {
+    check_pixel_index(index)?;
+
     let accounts_iter = &mut accounts.iter();
 
     let program = next_account_info(accounts_iter)?;
@@ -232,8 +234,6 @@ pub fn process_sell_pixel(
         return Err(NftCanvasError::PixelOwnerDidNotSign.into());
     }
 
-    check_pixel_index(index)?;
-
     //
 
     if let Some(best_buy_info) = pixel_account_state.best_buy_info.as_ref()
@@ -291,6 +291,8 @@ pub fn process_buy_pixel(
     price: u64,
     direct_only: u8,
 ) -> ProgramResult {
+    check_pixel_index(index)?;
+
     let accounts_iter = &mut accounts.iter();
 
     let program = next_account_info(accounts_iter)?;
@@ -359,8 +361,6 @@ pub fn process_buy_pixel(
     if !buyer_wallet.is_signer {
         return Err(NftCanvasError::PixelOwnerDidNotSign.into());
     }
-
-    check_pixel_index(index)?;
 
     //
 
