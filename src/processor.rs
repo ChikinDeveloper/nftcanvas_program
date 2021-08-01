@@ -144,7 +144,7 @@ pub fn process_update_pixel_color(
     //
 
     let (pixel_account_id, _) = config::get_pixel(program_id, index);
-    let mut pixel_account_state = Pixel::unpack(*pixel_account.data.borrow())?;
+    let pixel_account_state = Pixel::unpack(*pixel_account.data.borrow())?;
 
     //
 
@@ -161,8 +161,9 @@ pub fn process_update_pixel_color(
         return Err(NftCanvasError::PixelOwnerDidNotSign.into());
     }
 
-    pixel_account_state.color = color;
-    pixel_account_state.pack_into(&mut &mut pixel_account.data.borrow_mut()[..])?;
+    pixel_account.data.borrow_mut()[4..7].copy_from_slice(&color);
+    // pixel_account_state.color = color;
+    // pixel_account_state.pack_into(&mut &mut pixel_account.data.borrow_mut()[..])?;
 
     Ok(())
 }
