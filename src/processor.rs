@@ -161,6 +161,7 @@ pub fn process_update_pixel_color(
         return Err(NftCanvasError::PixelOwnerDidNotSign.into());
     }
 
+    // WOW such optimisation
     pixel_account.data.borrow_mut()[4..7].copy_from_slice(&color);
     // pixel_account_state.color = color;
     // pixel_account_state.pack_into(&mut &mut pixel_account.data.borrow_mut()[..])?;
